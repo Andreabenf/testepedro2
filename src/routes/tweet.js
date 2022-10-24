@@ -7,7 +7,7 @@ import { cache, isAuthenticated, validate } from '@/middleware';
 const router = Router();
 
 router.route('/')
-  .get(isAuthenticated, validate(tweetValidations.listTweetsRules), tweetController.getTweets)
-  .post(isAuthenticated, validate(tweetValidations.createTweetRules), tweetController.createTweet);
+  .get(tweetController.getTweets)
+  .post(tweetController.createTweet);
 
 export default router;

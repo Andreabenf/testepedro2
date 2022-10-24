@@ -24,7 +24,6 @@ export default function (sequelize) {
     }
 
     static associate(models) {
-      User.hasMany(models.tweet, { foreignKey: 'userId' });
     }
   }
 

@@ -1,21 +1,15 @@
-export const up = (queryInterface, Sequelize) => queryInterface.createTable('tweets', {
+export const up = (queryInterface, Sequelize) => queryInterface.createTable('csas', {
   id: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     type: Sequelize.INTEGER,
   },
-  userId: {
+  urlBase: {
     allowNull: false,
-    type: Sequelize.INTEGER,
-    references: {
-      model: 'users',
-      field: 'id',
-    },
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
+    type: Sequelize.STRING(140),
   },
-  tweet: {
+  nameCSA: {
     allowNull: false,
     type: Sequelize.STRING(140),
   },

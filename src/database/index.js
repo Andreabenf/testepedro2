@@ -4,7 +4,7 @@ import * as config from '@/config/sequelize';
 
 // import models
 import userModel from './models/user';
-import tweetModel from './models/tweet';
+import tweetModel from './models/csa';
 
 // Configuration
 const env = process.env.NODE_ENV;

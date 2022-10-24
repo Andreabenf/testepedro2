@@ -5,6 +5,7 @@ const {
 } = process.env;
 
 const defaultConfig = {
+  url:DATABASE_URL,
   dialect: 'postgres',
   protocol: 'postgres',
   timezone: '+03:00',

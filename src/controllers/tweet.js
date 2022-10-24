@@ -8,19 +8,19 @@ import db from '@/database';
  */
 export const createTweet = async (req, res, next) => {
   try {
-    const { id: userId } = req.user;
-
     // Create tweet
-    const tweetData = { ...req.body, userId };
-    const tweet = await db.models.tweet
+    const tweetData = req.body;
+    console.log(tweetData)
+    const tweet = await db.models.csas
       .create(tweetData, {
-        fields: ['userId', 'tweet'],
+        fields: ['nameCSA', 'urlBase'],
       });
 
     // Save this tweet to redis
    
     return res.status(201).json(tweet);
   } catch (err) {
+    console.log(err)
     return next(err);
   }
 };
@@ -34,14 +34,10 @@ export const getTweets = async (req, res, next) => {
     const { page = 1, perPage = 10 } = req.query;
     const offset = page * perPage - perPage;
 
-    const tweetListResponse = await db.models.tweet
+    const tweetListResponse = await db.models.csa
       .findAndCountAll({
         offset,
         limit: perPage,
-        include: {
-          model: db.models.user,
-          attributes: ['id', 'firstName', 'lastName'],
-        },
         order: [['createdAt', 'DESC']],
       });
 
