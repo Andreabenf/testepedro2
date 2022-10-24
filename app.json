@@ -24,13 +24,13 @@
       "description": "PostgreSQL database port",
       "value": "5432"
     },
-    "DB_USER": {
+    "DB_USERNAME": {
       "description": "PostgreSQL database user"
     },
     "DB_PASSWORD": {
       "description": "PostgreSQL database user password"
     },
-    "DB_NAME": {
+    "DB_DATABASE": {
       "description": "PostgreSQL database name"
     },
     "REDIS_URI": {
