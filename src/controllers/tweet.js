@@ -1,7 +1,6 @@
 import createError from 'http-errors';
 
 import db from '@/database';
-import redisClient from '@/libs/redis';
 
 /**
  * POST /tweets
@@ -19,9 +18,7 @@ export const createTweet = async (req, res, next) => {
       });
 
     // Save this tweet to redis
-    if (redisClient.connected) {
-      redisClient.set(`Tweet:${tweet.id}`, JSON.stringify(tweet));
-    }
+   
     return res.status(201).json(tweet);
   } catch (err) {
     return next(err);
@@ -48,11 +45,7 @@ export const getTweets = async (req, res, next) => {
         order: [['createdAt', 'DESC']],
       });
 
-    if (redisClient.connected) {
-      tweetListResponse.rows.forEach((tweet) => {
-        redisClient.set(`Tweet:${tweet.id}`, JSON.stringify(tweet));
-      });
-    }
+   
 
     const totalPage = Math.ceil(tweetListResponse.count / perPage);
     const response = {
@@ -85,9 +78,7 @@ export const getTweetById = async (req, res, next) => {
     }
 
     // Save this tweet to redis
-    if (redisClient.connected) {
-      redisClient.set(req.cacheName, JSON.stringify(tweet));
-    }
+  
     return res.status(200).json(tweet);
   } catch (err) {
     return next(err);
@@ -109,9 +100,7 @@ export const deleteTweet = async (req, res, next) => {
     }
 
     // Remove this tweet from redis, if exist
-    if (redisClient.connected) {
-      redisClient.del(`Tweet:${tweetId}`);
-    }
+   
     await tweet.destroy();
     return res.status(204).send();
   } catch (err) {
