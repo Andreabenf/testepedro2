@@ -9,9 +9,10 @@ import tweetModel from './models/tweet';
 // Configuration
 const env = process.env.NODE_ENV;
 const sequelizeConfig = config[env];
+const DATABASE_URL = process.env.DATABASE_URL
 
 // Create sequelize instance
-const sequelize = new Sequelize(sequelizeConfig);
+const sequelize = new Sequelize(DATABASE_URL,sequelizeConfig);
 
 // Import all model files
 const modelDefiners = [

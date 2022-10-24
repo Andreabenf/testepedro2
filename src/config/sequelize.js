@@ -1,19 +1,22 @@
 import 'dotenv/config';
 
 const {
-  DB_HOST, DB_PORT = 5432, DB_DATABASE, DB_USERNAME, DB_PASSWORD,
+  DB_HOST, DB_PORT = 5432, DB_DATABASE, DB_USERNAME, DB_PASSWORD, DATABASE_URL
 } = process.env;
 
 const defaultConfig = {
   dialect: 'postgres',
+  protocol: 'postgres',
   timezone: '+03:00',
-  username: DB_USERNAME,
-  password: DB_PASSWORD,
-  database: DB_DATABASE,
-  host: DB_HOST,
-  port: Number(DB_PORT),
   define: {
     paranoid: true,
+  },
+  dialectOptions: {
+    ssl: {
+      require: true,
+      native:true,
+      rejectUnauthorized: false,
+    },
   },
 };
 
