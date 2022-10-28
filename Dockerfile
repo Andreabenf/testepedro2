@@ -24,8 +24,6 @@ RUN yarn install --prod
 
 COPY --from=builder /app/dist/ ./dist/
 
-COPY swagger.json ./
-
 EXPOSE 3000
 
 ENTRYPOINT [ "yarn", "start" ]

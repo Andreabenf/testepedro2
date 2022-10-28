@@ -27,4 +27,4 @@ export const up = (queryInterface, Sequelize) => queryInterface.createTable('csa
   },
 });
 
-export const down = (queryInterface) => queryInterface.dropTable('tweets');
+export const down = (queryInterface) => queryInterface.dropTable('csas');
