@@ -65,10 +65,6 @@ export const getcsaById = async (req, res, next) => {
     const csa = await db.models.csas
       .findOne({
         where: { id: csaId },
-        include: {
-          model: db.models.user,
-          attributes: ['id', 'firstName', 'lastName'],
-        },
       });
     if (!csa) {
       return next(createError(404, 'There is no csa with this id!'));
